@@ -105,7 +105,7 @@ export default function CreatePost ({authentication, loadingFunction}:create){
     const authenticationPost = () =>{
         loadingFunction(true)
         if(title === ""){
-            console.log("Aqui")
+          
             const media:string[] = []
            if(filePreview){
                 if(fileName){
@@ -189,7 +189,7 @@ export default function CreatePost ({authentication, loadingFunction}:create){
            
 
         }else{
-            console.log("Aqui dois")
+          
             const media:string[] = []
             if(filePreview){
                 if(fileName){

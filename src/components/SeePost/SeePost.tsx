@@ -55,6 +55,8 @@ export default function SeePost ({color, favorite, id, media, title, text, authe
             setIdPostCloud(media[1])
             setFilePreview(media[0])
         }
+        setTextN(text)
+        setTitleN(title)
     },[media])
 
     useEffect(()=>{
@@ -164,9 +166,11 @@ export default function SeePost ({color, favorite, id, media, title, text, authe
                        }
                         const res = authenticationPU(post)
                         res.then(value=>{
-                            loadingFunction(false)
-                            authentication()
-                            setSeeEditPost(false)
+                            if(value === "Post updated successfully."){
+                                loadingFunction(false)
+                                authentication()
+                                setSeeEditPost(false)
+                            }
                         })
                     })
                 }else{
@@ -185,9 +189,12 @@ export default function SeePost ({color, favorite, id, media, title, text, authe
                        }
                         const res = authenticationPU(post)
                         res.then(value=>{
-                            loadingFunction(false)
-                            authentication()
-                            setSeeEditPost(false)
+                            if(value === "Post updated successfully."){
+                                loadingFunction(false)
+                                authentication()
+                                setSeeEditPost(false)
+                            }
+                           
                         })
                     })
                     
@@ -203,9 +210,11 @@ export default function SeePost ({color, favorite, id, media, title, text, authe
            }
             const res = authenticationPU(post)
             res.then(value=>{
-                loadingFunction(false)
-                authentication()
-                setSeeEditPost(false)
+                if(value === "Post updated successfully."){
+                    loadingFunction(false)
+                    authentication()
+                    setSeeEditPost(false)
+                }
             })
            }
 
@@ -232,9 +241,11 @@ export default function SeePost ({color, favorite, id, media, title, text, authe
                        }
                         const res = authenticationPU(post)
                         res.then(value=>{
-                            loadingFunction(false)
-                            authentication()
-                            setSeeEditPost(false)
+                            if(value === "Post updated successfully."){
+                                loadingFunction(false)
+                                authentication()
+                                setSeeEditPost(false)
+                            }
                         })
                     })
                 }else{
@@ -254,9 +265,11 @@ export default function SeePost ({color, favorite, id, media, title, text, authe
                        }
                         const res = authenticationPU(post)
                         res.then(value=>{
-                            loadingFunction(false)
-                            authentication()
-                            setSeeEditPost(false)
+                            if(value === "Post updated successfully."){
+                                loadingFunction(false)
+                                authentication()
+                                setSeeEditPost(false)
+                            }
                         })
                     })
                 }
@@ -271,9 +284,11 @@ export default function SeePost ({color, favorite, id, media, title, text, authe
            }
             const res = authenticationPU(post)
             res.then(value=>{
-                loadingFunction(false)
-                authentication()
-                setSeeEditPost(false)
+                if(value === "Post updated successfully."){
+                    loadingFunction(false)
+                    authentication()
+                    setSeeEditPost(false)
+                }
             })
            }
 
@@ -291,7 +306,7 @@ export default function SeePost ({color, favorite, id, media, title, text, authe
             id: idPost,
             favorite: !favoriteN,
        }
-       console.log(postN)
+      
         const res = authenticationPU(postN)
         res.then(value=>{
             authentication()
