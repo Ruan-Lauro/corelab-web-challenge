@@ -412,9 +412,9 @@ export default function SeePost ({color, favorite, id, media, title, text, authe
                     ):null}
                 </div>
             ) : fileName && filePreview ? (
-                <div>
+                <div className="divPdf">
                     <img src={pdf} alt="pdf" className="pdf" />
-                    <p>{fileName}</p>
+                    <p >{fileName}</p>
                     {seeEditPost?(
                         <img 
                         src={exit} 
