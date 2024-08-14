@@ -24,6 +24,7 @@ const Posts = () => {
     const [deletePost, setDeletePost] = useState(false)
     const [resDelete, setResDelete] = useState<postGet>()
     const [trueDelete, setTrueDelete] = useState<postGet>()
+    const [dateWidth, setDateWidth] = useState(false)
 
     useEffect(() => {
         const handleResize = () => {
@@ -40,9 +41,14 @@ const Posts = () => {
     useEffect(() => {
         if (windowWidth < 1049) {
             setItemToShow(1);
-        } else if (windowWidth < 1520) {
-            setItemToShow(2);
-        } else {
+            if(windowWidth < 1520) {
+                setItemToShow(2);
+                if(windowWidth < 600){
+                    setDateWidth(true)
+                    console.log("Aqui")
+                }
+            }
+        }else {
             setItemToShow(3);
         }
     }, [windowWidth]);
@@ -138,6 +144,33 @@ const Posts = () => {
                         <img src={next} alt="Previous" />
                     </button>
                     <div className="overflowListPost">
+                       {dateWidth?(
+                        <>
+                             {listFavPost.map(post => (
+                            <SeePost
+                                color={post.color}
+                                favorite={post.favorite}
+                                id={post.id}
+                                media={post.media}
+                                title={post.title}
+                                key={post.id}
+                                text={post.text}
+                                authentication={() => {
+                                    setUpdate(!update)
+                                    setDeletePost(false)
+                                }}
+                                loadingFunction={loadinChange}
+                                authenticationDelete={()=>{
+                                    setDeletePost(true)
+                                    setResDelete(post)
+                                }}
+                                trueDeletePost={post === trueDelete}
+                                
+                            />
+                        ))}
+                        </>
+                       ):(
+                        <>
                         {listFavPost.slice(currentIndexFav, currentIndexFav + itemsToShow).map(post => (
                             <SeePost
                                 color={post.color}
@@ -160,6 +193,8 @@ const Posts = () => {
                                 
                             />
                         ))}
+                        </>
+                       )}
                     </div>
                     <button
                         className={`carousel-button next ${currentIndexFav + itemsToShow >= listFavPost.length ? 'hidden' : ''}`}
@@ -179,7 +214,9 @@ const Posts = () => {
                         <img src={next} alt="Previous" />
                     </button>
                     <div className="overflowListPost">
-                        {listPost.slice(currentIndexPost, currentIndexPost + itemsToShow).map(post => (
+                        {dateWidth?(
+                            <>
+                                {listPost.map(post => (
                             <SeePost
                                 color={post.color}
                                 favorite={post.favorite}
@@ -198,9 +235,34 @@ const Posts = () => {
                                     setResDelete(post)
                                 }}
                                 trueDeletePost={post === trueDelete}
-                                
                             />
                         ))}
+                            </>
+                        ):(
+                            <>
+                                {listPost.slice(currentIndexPost, currentIndexPost + itemsToShow).map(post => (
+                            <SeePost
+                                color={post.color}
+                                favorite={post.favorite}
+                                id={post.id}
+                                media={post.media}
+                                title={post.title}
+                                key={post.id}
+                                text={post.text}
+                                authentication={() => {
+                                    setUpdate(!update)
+                                    setDeletePost(false)
+                                }}
+                                loadingFunction={loadinChange}
+                                authenticationDelete={()=>{
+                                    setDeletePost(true)
+                                    setResDelete(post)
+                                }}
+                                trueDeletePost={post === trueDelete}
+                            />
+                        ))}
+                            </>
+                        )}
                     </div>
                     <button
                         className={`carousel-button next ${currentIndexPost + itemsToShow >= listPost.length ? 'hidden' : ''}`}
