@@ -45,7 +45,6 @@ const Posts = () => {
                 setItemToShow(2);
                 if(windowWidth < 600){
                     setDateWidth(true)
-                    console.log("Aqui")
                 }
             }
         }else {
