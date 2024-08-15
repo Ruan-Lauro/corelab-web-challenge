@@ -381,15 +381,17 @@ export default function CreatePost ({authentication, loadingFunction}:create){
                 </div>
                 {seeColor && (
                     <div className="divColorBall">
-                        {listColor.map((value) => (
-                            <Color 
-                                key={value.color} 
-                                cor={value.color} 
-                                nameColor={value.nameColor} 
-                                authentication={() => setColor(value.color)} 
-                                showColor={value.color === color} 
-                            />
-                        ))}
+                        <div className="divColorBallCarrosel">
+                            {listColor.map((value) => (
+                                <Color 
+                                    key={value.color} 
+                                    cor={value.color} 
+                                    nameColor={value.nameColor} 
+                                    authentication={() => setColor(value.color)} 
+                                    showColor={value.color === color} 
+                                />
+                            ))}
+                        </div>
                     </div>
                 )}
             </main>

@@ -39,13 +39,15 @@ const Posts = () => {
     }, []);
 
     useEffect(() => {
-        if (windowWidth < 1049) {
-            setItemToShow(1);
-            if(windowWidth < 1520) {
-                setItemToShow(2);
+        if (windowWidth < 1520) {
+            if(windowWidth < 1029) {
                 if(windowWidth < 600){
                     setDateWidth(true)
+                }else{
+                    setItemToShow(1);
                 }
+            }else{
+                setItemToShow(2);
             }
         }else {
             setItemToShow(3);
